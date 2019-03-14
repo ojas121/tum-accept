@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {GradeSelector} from './Selects'
 
 const styles = theme => ({
     root: {
@@ -19,23 +20,99 @@ const styles = theme => ({
     },
 });
 
-let id = 0;
-function createData(subject, y1s1, y1s2, y2s1, y2s2, final) {
-    id += 1;
-    return { id, subject, y1s1, y1s2, y2s1, y2s2, final };
-}
 
-const rows = [
-    createData('Language 1', 6, 6, 5, 6, 6),
-    createData('Language 2', 6, 6, 5, 6, 6),
-    createData('Humanities', 6, 6, 5, 6, 6),
-    createData('Science', 6, 6, 5, 6, 6),
-    createData('Mathematics', 6, 6, 5, 6, 6),
-    createData('Group 6', 6, 6, 5, 6, 6),
 
-];
 
 class SimpleTable extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            g1: {
+                y1s1: 1,
+                y1s2: 1,
+                y2s1: 1,
+                y2s2: 1,
+                y3s1: 1,
+            },
+            g2: {
+                y1s1: 1,
+                y1s2: 1,
+                y2s1: 1,
+                y2s2: 1,
+                y3s1: 1,
+            },
+            g3: {
+                y1s1: 1,
+                y1s2: 1,
+                y2s1: 1,
+                y2s2: 1,
+                y3s1: 1,
+            },
+            g4: {
+                y1s1: 1,
+                y1s2: 1,
+                y2s1: 1,
+                y2s2: 1,
+                y3s1: 1,
+            },
+            g5: {
+                y1s1: 1,
+                y1s2: 1,
+                y2s1: 1,
+                y2s2: 1,
+                y3s1: 1,
+            },
+            g6: {
+                y1s1: 1,
+                y1s2: 1,
+                y2s1: 1,
+                y2s2: 1,
+                y3s1: 1,
+            },
+            type6: "science",
+        };
+
+        this.id = 0;
+        this.rows = [
+            this.createData('Language 1', 1),
+            this.createData('Language 2', 2),
+            this.createData('Humanities', 3),
+            this.createData('Science', 4),
+            this.createData('Mathematics', 5),
+            this.createData('Group 6', 6)
+        ];
+        this.changeGrade = this.changeGrade.bind(this);
+
+    }
+
+    createData(subject, group) {
+        this.id += 1;
+        return {
+            id: this.id,
+            sub: subject,
+            y1s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={1} value={this.state["g"+group].y1s1}/>,
+            y1s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={2} value={this.state["g"+group].y1s2}/>,
+            y2s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={1} value={this.state["g"+group].y2s1}/>,
+            y2s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={2} value={this.state["g"+group].y2s2}/>,
+            final: <GradeSelector changeGrade={this.changeGrade} subject={group} year={3} sem={1} value={this.state["g"+group].y3s1}/>,
+        };
+    }
+
+    changeGrade = (value, subject, yearsem) => {
+        let change = {...this.state[subject]};
+        change[yearsem] = value;
+        console.log(change);
+        this.setState({
+            [subject]: change,
+        }, () => {console.log(this.state)});
+
+    };
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        console.log("will update");
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -53,15 +130,17 @@ class SimpleTable extends React.Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map(row => (
+                        {this.rows.map(row => (
                             <TableRow key={row.id}>
                                 <TableCell component="th" scope="row">
-                                    {row.name}
+                                    {row.sub}
                                 </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
+                                <TableCell align="right">{row.y1s1}</TableCell>
+                                <TableCell align="right">{row.y1s2}</TableCell>
+                                <TableCell align="right">{row.y2s1}</TableCell>
+                                <TableCell align="right">{row.y2s2}</TableCell>
+                                <TableCell align="right">{row.final}</TableCell>
+
                             </TableRow>
                         ))}
                     </TableBody>
