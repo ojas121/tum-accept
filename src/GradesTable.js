@@ -91,11 +91,11 @@ class SimpleTable extends React.Component {
         return {
             id: this.id,
             sub: subject,
-            y1s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={1} value={this.state["g"+group].y1s1}/>,
-            y1s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={2} value={this.state["g"+group].y1s2}/>,
-            y2s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={1} value={this.state["g"+group].y2s1}/>,
-            y2s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={2} value={this.state["g"+group].y2s2}/>,
-            final: <GradeSelector changeGrade={this.changeGrade} subject={group} year={3} sem={1} value={this.state["g"+group].y3s1}/>,
+            y1s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={2} />,
+            y1s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={1} />,
+            y2s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={1} />,
+            y2s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={2} />,
+            final: <GradeSelector changeGrade={this.changeGrade} subject={group} year={3} sem={1} />,
         };
     }
 
@@ -106,12 +106,18 @@ class SimpleTable extends React.Component {
         this.setState({
             [subject]: change,
         }, () => {console.log(this.state)});
-
+        this.updateSuper(subject, change);
     };
-
-    componentWillUpdate(nextProps, nextState, nextContext) {
-        console.log("will update");
-    }
+    
+    updateSuper = (subject, newGrades) => {
+        let average = Number(newGrades.y1s1);
+        average += Number(newGrades.y1s2);
+        average += Number(newGrades.y2s1);
+        average += Number(newGrades.y2s2);
+        average += Number(newGrades.y3s1);
+        average = average/5;
+        this.props.changeGrade(average, subject);
+    };
 
     render() {
         const { classes } = this.props;

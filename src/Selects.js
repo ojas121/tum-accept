@@ -8,14 +8,14 @@ class GradeSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: this.props.value,
+            value: "",
         }
     }
 
     onChange = (change) => {
 
         let newGrade = change.target.value;
-        this.props.changeGrade(newGrade, "g" + this.props.subject, "y" + this.props.year + "s" + this.props.sem);
+        this.props.changeGrade(newGrade, this.props.subject, "y" + this.props.year + "s" + this.props.sem);
         this.setState({value: newGrade});
     };
 
