@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import SimpleTable from './GradesTable.js'
@@ -12,7 +11,8 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import {purple, teal} from "@material-ui/core/colors";
 
 
-const theme = createMuiTheme({palette: {
+const theme = createMuiTheme({
+  palette: {
     primary: {
       light: purple[300],
       main: purple[500],
@@ -23,6 +23,9 @@ const theme = createMuiTheme({palette: {
       main: teal[500],
       dark: teal[700],
     },
+  },
+  typography: {
+    useNextVariants: true,
   },
 });
 
@@ -48,10 +51,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      avgGrades: [1,1,1,1,1,1],
+      avgGrades: [null, null, null, null, null, null],
+      finalGrades: [null, null, null, null, null, null],
       bonus: 0,
-      subjectWeighting: [1,1,0,1,2,1],
-      overallWeighting: [0.6,0.4],
+      subjectWeighting: [null, null, null, null, null, null],
+      totalWeight: null,
+      type6: "Arts",
     };
   }
 
@@ -62,6 +67,15 @@ class App extends Component {
       avgGrades: newGrades,
     }, () => console.log(this.state.avgGrades));
   };
+
+  changeFinalGrade = (finalGrade, group) => {
+    let newFinal = this.state.finalGrades;
+    newFinal[group-1] = finalGrade;
+    this.setState({
+      finalGrades: newFinal,
+    }, () => console.log(this.state));
+  };
+
   changeBonus = (newBonus) => {
     this.setState({
       bonus: newBonus,
@@ -75,23 +89,36 @@ class App extends Component {
     });
   };
 
+  changeTotalWeighting = (totalWeight) => {
+    this.setState({
+      totalWeight: totalWeight,
+    });
+  };
+
+  changeType6 = (new6) => {
+    this.setState({
+      type6: new6,
+    });
+    console.log(new6);
+  };
+
   render() {
     const {classes} = this.props;
     return (
       <div className={classes.App}>
         <Grid container spacing={16}>
-          <Grid item md={5}>
+          <Grid item md={6}>
             <Card>
               <CardHeader title={"Grades"}/>
-              <SimpleTable changeGrade={this.changeGrade}/>
+              <SimpleTable changeGrade={this.changeGrade} changeFinalGrade={this.changeFinalGrade} changeType6={this.changeType6}/>
             </Card>
           </Grid>
 
-          <Grid item md={4}>
+          <Grid item md={3}>
             <Card>
               <CardHeader title={"Choices"}/>
               <CardContent>
-                <ChoiceForm/>
+                <ChoiceForm changeBonus={this.changeBonus} changeSubjectWeighting={this.changeSubjectWeighting} changeTotalWeight={this.changeTotalWeighting}/>
               </CardContent>
             </Card>
           </Grid>

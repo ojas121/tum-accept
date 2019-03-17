@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {GradeSelector} from './Selects'
+import {GradeSelector, SubjectSelector} from './Selects'
 
 const styles = theme => ({
     root: {
@@ -27,52 +27,6 @@ class SimpleTable extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            g1: {
-                y1s1: 1,
-                y1s2: 1,
-                y2s1: 1,
-                y2s2: 1,
-                y3s1: 1,
-            },
-            g2: {
-                y1s1: 1,
-                y1s2: 1,
-                y2s1: 1,
-                y2s2: 1,
-                y3s1: 1,
-            },
-            g3: {
-                y1s1: 1,
-                y1s2: 1,
-                y2s1: 1,
-                y2s2: 1,
-                y3s1: 1,
-            },
-            g4: {
-                y1s1: 1,
-                y1s2: 1,
-                y2s1: 1,
-                y2s2: 1,
-                y3s1: 1,
-            },
-            g5: {
-                y1s1: 1,
-                y1s2: 1,
-                y2s1: 1,
-                y2s2: 1,
-                y3s1: 1,
-            },
-            g6: {
-                y1s1: 1,
-                y1s2: 1,
-                y2s1: 1,
-                y2s2: 1,
-                y3s1: 1,
-            },
-            type6: "science",
-        };
-
         this.id = 0;
         this.rows = [
             this.createData('Language 1', 1),
@@ -80,7 +34,7 @@ class SimpleTable extends React.Component {
             this.createData('Humanities', 3),
             this.createData('Science', 4),
             this.createData('Mathematics', 5),
-            this.createData('Group 6', 6)
+            this.createData(<SubjectSelector change6={this.change6}/>, 6)
         ];
         this.changeGrade = this.changeGrade.bind(this);
 
@@ -99,6 +53,13 @@ class SimpleTable extends React.Component {
         };
     }
 
+    change6 = change => {
+        this.setState({
+            type6: change,
+        });
+        this.props.changeType6(change);
+    };
+
     changeGrade = (value, subject, yearsem) => {
         let change = {...this.state[subject]};
         change[yearsem] = value;
@@ -107,6 +68,13 @@ class SimpleTable extends React.Component {
             [subject]: change,
         }, () => {console.log(this.state)});
         this.updateSuper(subject, change);
+        if(yearsem === "y3s1") {
+            this.updateSuperFinal(subject, value);
+        }
+    };
+
+    updateSuperFinal = (subject, newFinal) => {
+        this.props.changeFinalGrade(newFinal, subject);
     };
     
     updateSuper = (subject, newGrades) => {
