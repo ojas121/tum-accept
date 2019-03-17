@@ -37,6 +37,7 @@ class SimpleTable extends React.Component {
             this.createData(<SubjectSelector change6={this.change6}/>, 6)
         ];
         this.changeGrade = this.changeGrade.bind(this);
+        this.state={};
 
     }
 

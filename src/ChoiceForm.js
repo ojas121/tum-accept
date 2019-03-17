@@ -27,13 +27,40 @@ class ChoiceForm extends React.Component {
         };
     }
 
-    preset = choice => {};
+    preset = choice => {
+        if(choice === "mw") {
+            this.changeSubWeight(0,1);
+            this.changeSubWeight(1,2);
+            this.changeSubWeight(0,3);
+            this.changeSubWeight(2,4);
+            this.changeSubWeight(3,5);
+            this.changeSubWeight(2,6);
+        } else {
+            this.changeSubWeight(1,1);
+            this.changeSubWeight(1,2);
+            this.changeSubWeight(0,3);
+            this.changeSubWeight(1,4);
+            this.changeSubWeight(2,5);
+            this.changeSubWeight(1,6);
+        }
+    };
 
-    changeSubWeight(newWeight, group) {}
+    changeSubWeight(newWeight, group) {
+        this.setState({
+            ["g"+group]: newWeight,
+        });
+        this.props.changeSubjectWeight(newWeight, group);
+    }
 
-    changeTotalWeight(newWeight) {}
+    changeTotalWeight(newWeight) {
+        this.setState({totalWeight: newWeight});
+        this.props.changeTotalWeight(newWeight);
+    }
 
-    changeBonus(newBonus) {}
+    changeBonus(newBonus) {
+        this.setState({bonus: newBonus});
+        this.props.changeBonus(newBonus);
+    }
 
     render() {
 
@@ -68,10 +95,6 @@ class ChoiceForm extends React.Component {
                     <TableRow>
                         <TableCell><Typography>Group 6</Typography></TableCell>
                         <TableCell><TextField value={this.state.g6} onChange={(event) => this.changeSubWeight(event.target.value, 6)}/></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell><Typography>Weight of HZB Final</Typography></TableCell>
-                        <TableCell><TextField value={this.state.totalWeight} onChange={(event) => this.changeTotalWeight(event.target.value)}/></TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell><Typography>Bonus Points</Typography></TableCell>

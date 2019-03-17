@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import ChoiceForm from './ChoiceForm'
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import {purple, teal} from "@material-ui/core/colors";
+import Verdict from "./Verdict";
 
 
 const theme = createMuiTheme({
@@ -55,7 +56,7 @@ class App extends Component {
       finalGrades: [null, null, null, null, null, null],
       bonus: 0,
       subjectWeighting: [null, null, null, null, null, null],
-      totalWeight: null,
+      totalWeight: 0.65,
       type6: "Arts",
     };
   }
@@ -118,7 +119,7 @@ class App extends Component {
             <Card>
               <CardHeader title={"Choices"}/>
               <CardContent>
-                <ChoiceForm changeBonus={this.changeBonus} changeSubjectWeighting={this.changeSubjectWeighting} changeTotalWeight={this.changeTotalWeighting}/>
+                <ChoiceForm changeBonus={this.changeBonus} changeSubjectWeight={this.changeSubjectWeighting} changeTotalWeight={this.changeTotalWeighting} type6={this.state.type6}/>
               </CardContent>
             </Card>
           </Grid>
@@ -126,6 +127,9 @@ class App extends Component {
           <Grid item md={3}>
             <Card>
               <CardHeader title={"Verdict"}/>
+              <CardContent>
+              <Verdict totalWeight={this.state.totalWeight} avgGrades={this.state.avgGrades} subjectWeighting={this.state.subjectWeighting} bonus={this.state.bonus} finalGrades={this.state.finalGrades}/>
+              </CardContent>
             </Card>
           </Grid>
         </Grid>
