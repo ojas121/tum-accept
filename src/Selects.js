@@ -32,7 +32,7 @@ class SubjectSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            value: "Arts",
+            value: "Science",
         };
     }
 
@@ -48,6 +48,7 @@ class SubjectSelector extends React.Component {
             <Select value={this.state.value} onChange={this.handleChange}>
                 <MenuItem value={"Arts"}>Arts</MenuItem>
                 <MenuItem value={"Humanities"}>Humanities</MenuItem>
+                <MenuItem value={"Language"}>Language</MenuItem>
                 <MenuItem value={"Science"}>Science</MenuItem>
             </Select>
         </div>);

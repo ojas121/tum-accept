@@ -34,7 +34,8 @@ class SimpleTable extends React.Component {
             this.createData('Humanities', 3),
             this.createData('Science', 4),
             this.createData('Mathematics', 5),
-            this.createData(<SubjectSelector change6={this.change6}/>, 6)
+            this.createData(<SubjectSelector change6={this.change6}/>, 6),
+            this.createData('Bonus', 'b')
         ];
         this.changeGrade = this.changeGrade.bind(this);
         this.state={};
@@ -43,13 +44,25 @@ class SimpleTable extends React.Component {
 
     createData(subject, group) {
         this.id += 1;
+        if(group !== 'b') {
+            return {
+                id: this.id,
+                sub: subject,
+                y1s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={2} />,
+                y1s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={1} />,
+                y2s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={1} />,
+                y2s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={2} />,
+                final: <GradeSelector changeGrade={this.changeGrade} subject={group} year={3} sem={1} />,
+            };
+        }
+
         return {
             id: this.id,
             sub: subject,
-            y1s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={2} />,
-            y1s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={1} sem={1} />,
-            y2s1: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={1} />,
-            y2s2: <GradeSelector changeGrade={this.changeGrade} subject={group} year={2} sem={2} />,
+            y1s2: "",
+            y1s1: "",
+            y2s1: "",
+            y2s2: "",
             final: <GradeSelector changeGrade={this.changeGrade} subject={group} year={3} sem={1} />,
         };
     }

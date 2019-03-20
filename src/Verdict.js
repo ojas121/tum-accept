@@ -40,32 +40,75 @@ class Verdict extends React.Component {
         return total;
     }
 
+    mw() {
+        let totalAvg = 0;
+        let score = 0;
+
+        this.props.avgGrades.forEach((old) => {
+            totalAvg += Number(this.convert(old));
+        });
+        totalAvg = totalAvg/6;
+        score += totalAvg * 0.65;
+
+        let convertedFinal = [];
+        this.props.finalGrades.forEach((old) => {
+            convertedFinal.push(this.convert(old));
+        });
+        let totalFinal = 0;
+        totalFinal += Number(convertedFinal[1]);
+        totalFinal += Number(convertedFinal[3]) * 2;
+        totalFinal += Number(convertedFinal[4]) * 3;
+        if (this.props.type6 === "Science") {
+            totalFinal += Number(convertedFinal[5]) * 2;
+            totalFinal = totalFinal/8;
+        } else {
+            totalFinal = totalFinal/6;
+
+        }
+        score = score + (totalFinal * 0.35);
+        return score;
+    }
+
+    es() {
+        let totalAvg = 0;
+        let score = 0;
+
+        this.props.avgGrades.forEach((old) => {
+            totalAvg += Number(this.convert(old));
+        });
+        totalAvg = totalAvg/6;
+        score += totalAvg * 0.65;
+
+        let convertedFinal = [];
+        this.props.finalGrades.forEach((old) => {
+            convertedFinal.push(this.convert(old));
+        });
+        let totalFinal = 0;
+        totalFinal += Number(convertedFinal[0]);
+        totalFinal += Number(convertedFinal[1]);
+        totalFinal += Number(convertedFinal[3]);
+        totalFinal += Number(convertedFinal[4]) * 2;
+        if (this.props.type6 === "Science") {
+            totalFinal += Number(convertedFinal[5]);
+            totalFinal = totalFinal/6;
+        } else {
+            totalFinal = totalFinal/5;
+
+        }
+        score = score + (totalFinal * 0.35);
+        return score;
+    }
+
+    convert(old) {
+        return 100- (20*(7-Number(old)));
+    }
+
     render() {
-        let score = this.calculateScore();
-        let mw, es;
-        if(score >= 82) {
-            es = "Accepted";
-        } else if (score > 74) {
-            es = "Interview";
-        } else {
-            es = "Not accepted";
-        }
-
-        if(score >= 75) {
-            mw = "Accepted";
-        } else if (score > 67) {
-            mw = "Interview";
-        } else {
-            mw = "Not accepted";
-        }
-
         return(<div>
-            <Typography variant="overline">Your score: </Typography>
-            <Typography variant="h6">{score}</Typography>
             <Typography variant="overline">Maschinenwesen: </Typography>
-            <Typography variant="h6">{mw}</Typography>
+            {this.mw()}
             <Typography variant="overline">Engineering Science: </Typography>
-            <Typography variant="h6">{es}</Typography>
+            {this.es()}
         </div>);
     }
 
