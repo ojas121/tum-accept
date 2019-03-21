@@ -42,13 +42,14 @@ const styles = theme => ({
         fontSize: 14,
     },
     App: {
-        backgroundColor: 'rgb(0,0,0)',
-        maxHeight: '100%',
-        maxWidth: '100%',
+        backgroundColor: theme.palette.background.default,
+        height: '100%',
+        width: '100%',
     },
     grid: {
         maxHeight: '100%',
-        maxWidth: '100%'
+        maxWidth: '100%',
+        margin: 0,
     }
 });
 
