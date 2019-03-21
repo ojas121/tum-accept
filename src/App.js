@@ -113,9 +113,13 @@ class App extends Component {
                 <Grid container spacing={16} className={classes.grid}>
                     <Grid item md={3}>
                         <Card>
-                            <CardHeader title={"Choices"}/>
+                            <CardHeader title={"Instructions"}/>
                             <CardContent>
-                                Instructions
+                                Enter your IB grades here. Language 1 refers to English, and 2 to German. Use the dropdown to select what your Group 6 subject is. Further Maths is not supported by this tool.<br/><br/>
+                                Bonus points refer to different activities you participate in that the TUM can decide to honor with points. You can receive upto 2 bonus points for each activity, upto a maximum of 6. See TUM documents for more info.<br/><br/>
+                                The points provided here are a conservative estimate of the TUM's actual criteria. TUM says that they will round up at some intermediate points, which this tool does not do. Rounding only takes place at the final step in this tool, and it will be rounded up, like the TUM does.<br/><br/>
+                                <br/>
+                                <b>I DO NOT TAKE ANY LIABILITY FOR ANY RESULTS THIS TOOL GIVES YOU, AND FOR ANY DECISIONS YOU MAKE A RESULT. I will make all efforts to keep this accurate, but make no guarantees that it is so. By using this tool, you agree with the above.</b>
                             </CardContent>
                         </Card>
                     </Grid>
