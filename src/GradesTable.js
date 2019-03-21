@@ -75,16 +75,21 @@ class SimpleTable extends React.Component {
     };
 
     changeGrade = (value, subject, yearsem) => {
-        let change = {...this.state[subject]};
-        change[yearsem] = value;
-        console.log(change);
-        this.setState({
-            [subject]: change,
-        }, () => {console.log(this.state)});
-        this.updateSuper(subject, change);
-        if(yearsem === "y3s1") {
-            this.updateSuperFinal(subject, value);
+        if (subject !== "b") {
+            let change = {...this.state[subject]};
+            change[yearsem] = value;
+            console.log(change);
+            this.setState({
+                [subject]: change,
+            }, () => {console.log(this.state)});
+            this.updateSuper(subject, change);
+            if(yearsem === "y3s1") {
+                this.updateSuperFinal(subject, value);
+            }
+        } else {
+            this.setState({bonus: value,},() => {this.props.changeBonus(Number(value))});
         }
+
     };
 
     updateSuperFinal = (subject, newFinal) => {
