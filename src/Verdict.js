@@ -13,33 +13,6 @@ import {Typography} from "@material-ui/core";
 
 class Verdict extends React.Component {
 
-    calculateScore() {
-        let total = 0;
-
-        let averageTotal = 0;
-        this.props.finalGrades.forEach(grade => {
-            let newGrade = 100- (20*(7-Number(grade)));
-            averageTotal += newGrade;
-        });
-        averageTotal = averageTotal/6;
-        total += averageTotal * 0.65;
-        console.log(averageTotal);
-
-        let allWeighted = 0;
-        let numberWeighted = 0;
-        for(let i = 0; i < 6; i++) {
-            let newGrade = 100- (20*(7-Number(this.props.avgGrades[i])));
-            allWeighted += newGrade * Number(this.props.subjectWeighting[i]);
-            numberWeighted += Number(this.props.subjectWeighting[i]);
-            console.log(this.props.subjectWeighting[i]);
-        }
-        total += (allWeighted*0.35/numberWeighted);
-
-        total += Number(this.props.bonus);
-
-        return total;
-    }
-
     mw() {
         let totalAvg = 0;
         let score = 0;
