@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/tum-accept/precache-manifest.180d8868b3bc9141cb7a1619ba047a0f.js"
+  "tumaccept.tk/precache-manifest.5b16c1523a843bcc263b158a99ac35a8.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/tum-accept/index.html", {
+workbox.routing.registerNavigationRoute("tumaccept.tk/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

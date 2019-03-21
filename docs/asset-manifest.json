@@ -1,13 +1,13 @@
 {
-  "main.css": "/tum-accept/static/css/main.2d58623c.chunk.css",
-  "main.js": "/tum-accept/static/js/main.97b6529f.chunk.js",
-  "main.js.map": "/tum-accept/static/js/main.97b6529f.chunk.js.map",
-  "runtime~main.js": "/tum-accept/static/js/runtime~main.dca98343.js",
-  "runtime~main.js.map": "/tum-accept/static/js/runtime~main.dca98343.js.map",
-  "static/js/2.bfb45431.chunk.js": "/tum-accept/static/js/2.bfb45431.chunk.js",
-  "static/js/2.bfb45431.chunk.js.map": "/tum-accept/static/js/2.bfb45431.chunk.js.map",
-  "index.html": "/tum-accept/index.html",
-  "precache-manifest.180d8868b3bc9141cb7a1619ba047a0f.js": "/tum-accept/precache-manifest.180d8868b3bc9141cb7a1619ba047a0f.js",
-  "service-worker.js": "/tum-accept/service-worker.js",
-  "static/css/main.2d58623c.chunk.css.map": "/tum-accept/static/css/main.2d58623c.chunk.css.map"
+  "main.css": "tumaccept.tk/static/css/main.2d58623c.chunk.css",
+  "main.js": "tumaccept.tk/static/js/main.97b6529f.chunk.js",
+  "main.js.map": "tumaccept.tk/static/js/main.97b6529f.chunk.js.map",
+  "runtime~main.js": "tumaccept.tk/static/js/runtime~main.280a05e9.js",
+  "runtime~main.js.map": "tumaccept.tk/static/js/runtime~main.280a05e9.js.map",
+  "static/js/2.bfb45431.chunk.js": "tumaccept.tk/static/js/2.bfb45431.chunk.js",
+  "static/js/2.bfb45431.chunk.js.map": "tumaccept.tk/static/js/2.bfb45431.chunk.js.map",
+  "index.html": "tumaccept.tk/index.html",
+  "precache-manifest.5b16c1523a843bcc263b158a99ac35a8.js": "tumaccept.tk/precache-manifest.5b16c1523a843bcc263b158a99ac35a8.js",
+  "service-worker.js": "tumaccept.tk/service-worker.js",
+  "static/css/main.2d58623c.chunk.css.map": "tumaccept.tk/static/css/main.2d58623c.chunk.css.map"
 }
