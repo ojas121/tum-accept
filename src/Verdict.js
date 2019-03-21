@@ -96,7 +96,24 @@ class Verdict extends React.Component {
 
         }
         score = score + (totalFinal * 0.35);
-        return score;
+        if (score < 0 || isNaN(score) || score == null) {
+            return (<span style={{whiteSpace: "nowrap"}}>
+                <Typography variant="subtitle1">Score cannot be calculated</Typography>
+            </span>);
+        } else if (score >= 82) {
+            return (<span style={{whiteSpace: "nowrap"}}>
+                <Typography variant={"h6"}>{Math.round(score)}</Typography><Typography variant="subtitle1">Accepted</Typography>
+            </span>);
+        } else if (score > 74) {
+            return (<span style={{whiteSpace: "nowrap"}}>
+                <Typography variant={"h6"}>{Math.round(score)}</Typography><Typography variant="subtitle1">Interview</Typography>
+            </span>);
+        } else {
+            return (<span style={{whiteSpace: "nowrap"}}>
+                <Typography variant={"h6"}>{Math.round(score)}</Typography><Typography variant="subtitle1">Declined</Typography>
+            </span>);
+        }
+
     }
 
     convert(old) {
