@@ -39,7 +39,12 @@ class Verdict extends React.Component {
 
         }
         score = score + (totalFinal * 0.35);
-        score = Math.round(score);
+
+        if (Number(score) > Math.round(Number(score))) {
+            score = 1 + Math.round(Number(score));
+        } else {
+            score = Math.round(score);
+        }
         score += this.props.bonus;
         if (score < 0 || isNaN(score) || score == null) {
             return (<span style={{whiteSpace: "nowrap"}}>
@@ -88,7 +93,11 @@ class Verdict extends React.Component {
 
         }
         score = score + (totalFinal * 0.35);
-        score = Math.round(score);
+        if (Number(score) > Math.round(Number(score))) {
+            score = 1 + Math.round(Number(score));
+        } else {
+            score = Math.round(score);
+        }
         score += this.props.bonus;
         if (score < 0 || isNaN(score) || score == null) {
             return (<span style={{whiteSpace: "nowrap"}}>
